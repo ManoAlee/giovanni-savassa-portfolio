@@ -58,54 +58,122 @@
         <section class="about section" id="about">
             <div class="container">
                 <h2 class="section__title">Sobre Mim</h2>
-                <span class="section__subtitle">Conheça minha trajetória, objetivos e formação</span>
+                <span class="section__subtitle">Trajetória, impacto real e filosofias de infraestrutura de TI</span>
 
-                <div class="about__container grid">
-                    <div class="about__data">
-                        <!-- Carregado Dinamicamente -->
+                <!-- 1. Grid Principal (Bio + Métricas de Impacto) -->
+                <div class="about__hero-grid">
+                    <div class="about__bio-card">
+                        <div class="about__accent-bar"></div>
+                        <h3 class="about__bio-title">Quem é Giovanni Savassa?</h3>
                         <p class="about__description" id="about-text-placeholder">
                             Carregando biografia...
                         </p>
-                        
-                        <div class="about__info grid">
-                            <div class="about__info-card">
-                                <span class="about__info-title">03+ Anos</span>
-                                <span class="about__info-name">Experiência TI</span>
-                            </div>
-                            <div class="about__info-card">
-                                <span class="about__info-title">FATEC</span>
-                                <span class="about__info-name">Gestão de TI</span>
-                            </div>
-                            <div class="about__info-card">
-                                <span class="about__info-title">100%</span>
-                                <span class="about__info-name">Comprometimento</span>
-                            </div>
+                        <blockquote class="about__quote">
+                            "A infraestrutura de TI não deve ser tratada como um mero custo operacional reativo, mas como um ativo estratégico, blindado e escalável que suporta o crescimento do negócio."
+                        </blockquote>
+                    </div>
+
+                    <div class="about__metrics-grid">
+                        <div class="about__metric-card">
+                            <i class="bx bx-trending-down about__metric-icon red-icon"></i>
+                            <span class="about__metric-number">-18%</span>
+                            <span class="about__metric-label">Downtime de Rede</span>
                         </div>
+                        <div class="about__metric-card">
+                            <i class="bx bx-bolt-circle about__metric-icon green-icon"></i>
+                            <span class="about__metric-number">+25%</span>
+                            <span class="about__metric-label">Vida Útil de Hardware</span>
+                        </div>
+                        <div class="about__metric-card">
+                            <i class="bx bx-check-double about__metric-icon blue-icon"></i>
+                            <span class="about__metric-number">78%</span>
+                            <span class="about__metric-label">Resolução L1 (FCR)</span>
+                        </div>
+                        <div class="about__metric-card">
+                            <i class="bx bx-shield-quarter about__metric-icon cyan-icon"></i>
+                            <span class="about__metric-number">120+</span>
+                            <span class="about__metric-label">Endpoints Protegidos (EDR)</span>
+                        </div>
+                    </div>
+                </div>
 
-                        <div class="grid" style="grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem;">
-                            <!-- Card Formação -->
-                            <div class="about__education">
-                                <h3 class="about__education-title"><i class="bx bx-book-reader"></i> Formação Acadêmica</h3>
-                                <div class="about__education-content">
-                                    <span class="about__education-school">Fatec Tatuí</span>
-                                    <p class="about__education-course">Curso Superior de Tecnologia (CST) em Gestão da Tecnologia da Informação</p>
-                                    <span class="about__education-date">Fevereiro de 2022 - Dezembro de 2024 (Concluído)</span>
-                                </div>
+                <!-- 2. Filosofias de Trabalho (Como eu opero) -->
+                <div class="about__section-divider">
+                    <h3 class="about__subtitle-gradient">Minhas Filosofias de Trabalho</h3>
+                </div>
+                <div class="about__philosophies grid">
+                    <div class="about__philosophy-card">
+                        <div class="about__philosophy-header">
+                            <i class="bx bx-target-lock"></i>
+                            <h4>Monitoramento Proativo</h4>
+                        </div>
+                        <p>O melhor suporte técnico é aquele que previne a falha. Foco em monitorar ativamente logs, links e switches para evitar interrupções de tráfego crítico corporativo.</p>
+                    </div>
+                    <div class="about__philosophy-card">
+                        <div class="about__philosophy-header">
+                            <i class="bx bx-lock-alt"></i>
+                            <h4>Segurança no Endpoint</h4>
+                        </div>
+                        <p>Segurança se faz em camadas. Protejo o parque tecnológico por meio de GPOs robustas, bloqueios centrais de acessos e monitoramento centralizado de antivírus/EDR.</p>
+                    </div>
+                    <div class="about__philosophy-card">
+                        <div class="about__philosophy-header">
+                            <i class="bx bx-book-bookmark"></i>
+                            <h4>Processos & Playbooks</h4>
+                        </div>
+                        <p>Se um procedimento não está documentado, ele é ineficiente. Crio manuais de onboarding e artigos de base de conhecimento para acelerar a resolução (MTTR) de incidentes.</p>
+                    </div>
+                </div>
+
+                <!-- 3. Problemas que eu resolvo -->
+                <div class="about__section-divider">
+                    <h3 class="about__subtitle-gradient">Problemas Críticos que Resolvo nas Empresas</h3>
+                </div>
+                <div class="about__problems grid">
+                    <div class="about__problem-card">
+                        <div class="about__problem-badge alert-red">Rede Instável ou com Lentidão</div>
+                        <p>Diagnostico lentidões físicas e lógicas, reestruturo VLANs Cisco para segmentar fluxos administrativos e configurei redundâncias para garantir alta conectividade.</p>
+                    </div>
+                    <div class="about__problem-card">
+                        <div class="about__problem-badge alert-orange">Descontrole de Acesso e Riscos de Segurança</div>
+                        <p>Implemento políticas rígidas no Active Directory, mapeio acessos hierárquicos e crio políticas de grupo (GPOs) para controle de softwares e auditorias preventivas.</p>
+                    </div>
+                    <div class="about__problem-card">
+                        <div class="about__problem-badge alert-green">Suporte Técnico Lento ou Sem Escala</div>
+                        <p>Otimizo fluxos de helpdesk orientados a SLAs de SLA, melhoro a triagem L1/L2 e diminuo o volume de chamados repetitivos instruindo e capacitando os usuários.</p>
+                    </div>
+                </div>
+
+                <!-- 4. Formação & Idiomas -->
+                <div class="about__section-divider">
+                    <h3 class="about__subtitle-gradient">Formação & Comunicação</h3>
+                </div>
+                <div class="about__education-languages grid">
+                    <!-- Formação Acadêmica -->
+                    <div class="about__education">
+                        <h3 class="about__education-title"><i class="bx bx-book-reader"></i> Formação Superior</h3>
+                        <div class="about__education-content">
+                            <span class="about__education-school">Fatec Tatuí</span>
+                            <p class="about__education-course">Curso Superior de Tecnologia (CST) em Gestão da Tecnologia da Informação</p>
+                            <span class="about__education-date">Concluído em Dezembro de 2024</span>
+                        </div>
+                    </div>
+
+                    <!-- Idiomas com Barra de Progresso Visual -->
+                    <div class="about__education">
+                        <h3 class="about__education-title"><i class="bx bx-world"></i> Idiomas</h3>
+                        <div class="about__languages-grid">
+                            <div class="about__lang-bar">
+                                <span class="about__lang-name">Português (Nativo)</span>
+                                <div class="about__bar-bg"><div class="about__bar-fill" style="width: 100%;"></div></div>
                             </div>
-
-                            <!-- Card Idiomas -->
-                            <div class="about__education">
-                                <h3 class="about__education-title"><i class="bx bx-world"></i> Idiomas</h3>
-                                <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem; padding-top: 0.5rem;">
-                                    <div style="border-left: 2px solid var(--first-color); padding-left: 1rem;">
-                                        <h4 style="font-size: var(--normal-font-size); margin-bottom: 0.25rem;">Inglês</h4>
-                                        <span style="font-size: var(--small-font-size); color: var(--text-color-light);">Leitura e Escrita Técnica (Limited Working)</span>
-                                    </div>
-                                    <div style="border-left: 2px solid var(--second-color); padding-left: 1rem;">
-                                        <h4 style="font-size: var(--normal-font-size); margin-bottom: 0.25rem;">Espanhol</h4>
-                                        <span style="font-size: var(--small-font-size); color: var(--text-color-light);">Leitura e Escrita Básica (Limited Working)</span>
-                                    </div>
-                                </div>
+                            <div class="about__lang-bar">
+                                <span class="about__lang-name">Inglês (Técnico / Leitura)</span>
+                                <div class="about__bar-bg"><div class="about__bar-fill" style="width: 80%;"></div></div>
+                            </div>
+                            <div class="about__lang-bar">
+                                <span class="about__lang-name">Espanhol (Básico)</span>
+                                <div class="about__bar-bg"><div class="about__bar-fill" style="width: 40%;"></div></div>
                             </div>
                         </div>
                     </div>
