@@ -1,4 +1,4 @@
-# 💻 Portfólio Profissional | Giovanni Savassa
+# 💻 Portfólio Profissional de Alto Impacto | Giovanni Savassa
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Conclu%C3%ADdo-success?style=for-the-badge&logo=github" alt="Status">
@@ -6,22 +6,22 @@
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
   <img src="https://img.shields.io/badge/Arquitetura-SOLID-blueviolet?style=for-the-badge" alt="SOLID">
-  <img src="https://img.shields.io/badge/Foco-UX%2FUI-ff69b4?style=for-the-badge" alt="UX/UI">
+  <img src="https://img.shields.io/badge/Foco-UX%2FUI_Premium-ff69b4?style=for-the-badge" alt="UX/UI Premium">
 </p>
 
 ---
 
 ## 📌 Sobre o Projeto
 
-Este repositório contém o código-fonte do **Portfólio Profissional de Giovanni Savassa**, projetado especificamente para atração de talentos de alto nível técnico e recrutadores de TI. O projeto foi desenvolvido sob os mais rigorosos padrões de **Engenharia de Software (SOLID)** e **Acessibilidade/Experiência do Usuário (UX/UI)**.
+Este repositório contém o código-fonte do **Portfólio Profissional de Giovanni Henrique Savassa**, projetado especificamente como uma vitrine de alto impacto para atração de talentos de TI e recrutadores técnicos. O projeto foi estruturado sob os mais rígidos padrões de **Engenharia de Software (SOLID)** e **Experiência do Usuário (UX/UI)**.
 
-O resultado é uma aplicação web rápida, moderna, responsiva, com suporte nativo a temas (Dark/Light) e **100% dinâmica**, onde a camada de conteúdo visual é completamente isolada da lógica de renderização e estrutura da página.
+A aplicação funciona como uma Single Page Experience simulada usando múltiplas páginas (MPA) rápidas, modernas, responsivas, com suporte nativo a temas (Dark/Light persistente) e **100% dinâmica**, onde a camada de dados é isolada da lógica de renderização do DOM.
 
 ---
 
 ## 🛠️ Arquitetura do Projeto & Princípios SOLID
 
-Diferente de portfólios comuns estruturados em arquivos HTML estáticos gigantescos, este projeto foi desenhado sob uma **arquitetura limpa, desacoplada e distribuída em múltiplas páginas**.
+Diferente de portfólios comuns que misturam dados pessoais e marcação HTML estática, esta aplicação separa as responsabilidades de forma clara e escalável:
 
 ```mermaid
 graph TD
@@ -38,24 +38,18 @@ graph TD
 ### Como o SOLID é Aplicado na Prática:
 
 1. **S - Single Responsibility Principle (Princípio da Responsabilidade Única):**
-   - Cada arquivo HTML (`index.html`, `about.html`, etc.) é responsável apenas por estruturar a sua respectiva seção.
-   - `data.js` tem a **única** responsabilidade de armazenar as informações profissionais estruturadas.
-   - `render-pages.js` tem a **única** responsabilidade de mapear e renderizar os dados nas páginas correspondentes de forma limpa.
-   - `terminal.js` tem a **única** responsabilidade de controlar o console/terminal interativo da Home.
-   - `main.js` gerencia eventos globais (responsividade de menus, persistência do tema e feedback de cópia de e-mail).
-
+   - Cada arquivo possui uma única responsabilidade. `data.js` centraliza o conteúdo. `render-pages.js` realiza inserções dinâmicas de tags e listas. `terminal.js` isola a interatividade da CLI. `main.js` orquestra o estado do tema e do menu Drawer.
 2. **O - Open/Closed Principle (Princípio Aberto/Fechado):**
-   - O sistema está **fechado para modificação** do código de apresentação, mas **aberto para extensão** do conteúdo. 
-   - Se o Giovanni realizar um novo curso ou mudar de emprego, ele apenas adiciona o novo registro ao arquivo `data.js` e a interface correspondente se reconstrói sozinha, sem precisar editar as tags HTML.
+   - O código do renderizador e do layout está **fechado para modificação**, mas **aberto para extensão**. Para adicionar novos cursos, certificações ou experiências profissionais, basta editar o arquivo de dados (`data.js`) sem precisar alterar nenhuma linha de tag estrutural nos arquivos HTML.
 
 ---
 
 ## 🎨 Decisões de Design (UX/UI Premium)
 
-- **Dark-First Moderno:** O portfólio inicia em um tema escuro premium (`#080c14`), reduzindo a fadiga visual. O usuário pode alternar para o tema Claro a qualquer momento, e a preferência é gravada no navegador (`localStorage`).
-- **Terminal Interativo (CLI Mockup):** Um terminal de comandos totalmente funcional na Home onde recrutadores técnicos podem digitar comandos como `help`, `about`, `skills`, `experience`, `projects` e `contact` para navegar de maneira integrada e divertida.
-- **Micro-Interações Fluidas:** Hover com elevação de cards, botões com gradientes interativos, e efeito de cópia rápida no botão de e-mail.
-- **Glassmorphism:** Cabeçalho fixo com `backdrop-filter: blur(12px)` gerando o efeito de vidro translúcido ao rolar a página.
+- **Dark-First Moderno:** O portfólio inicia em um tema escuro premium (`#080c14`), reduzindo a fadiga visual. A preferência de tema é gravada no navegador do usuário via `localStorage`.
+- **Terminal Interativo (CLI Mockup):** Um console de comandos integrado na Home simulando um shell Linux. Permite comandos como `help`, `about`, `skills`, `experience`, `projects` e `contact` para navegação imersiva e divertida de recrutadores.
+- **Métricas Quantificativas de Impacto:** O Sobre Mim exibe indicadores reais dos impactos gerados em infraestrutura, como o downtime de rede e a vida útil média de estações de trabalho de antigos cargos.
+- **Glassmorphism:** Cabeçalhos e cards translúcidos com `backdrop-filter: blur(12px)` e efeitos de brilho em degradê que reagem dinamicamente à movimentação do mouse.
 
 ---
 
@@ -65,13 +59,14 @@ graph TD
 giovanni-savassa-portfolio/
 │
 ├── index.html                  # Home Page (Apresentação & Terminal CLI)
-├── about.html                  # Sobre Mim (Biografia expandida & Fatec)
-├── skills.html                 # Competências Técnicas (Grade detalhada)
-├── experience.html             # Experiência Profissional (Linha do tempo interativa)
-├── projects.html               # Projetos de Destaque (Filtro por categorias)
-├── contact.html                # Contato (Canais de comunicação)
-├── portfolio-content.md        # Conteúdo estruturado em Markdown para uso externo
-├── README.md                   # Documentação detalhada técnica (Este arquivo)
+├── about.html                  # Sobre Mim (Biografia, Metas e Idiomas)
+├── skills.html                 # Competências Técnicas (Grade de Competências)
+├── experience.html             # Experiência Profissional (Timeline Interativa)
+├── projects.html               # Projetos de Destaque (Cases: Desafio, Solução e Impacto)
+├── contact.html                # Contatos (Redes e links rápidos de envio)
+├── server.ps1                  # Servidor local leve e portátil em PowerShell
+├── portfolio-content.md        # Currículo completo estruturado em Markdown
+└── README.md                   # Documentação técnica detalhada (Este arquivo)
 │
 └── assets/
     ├── css/
@@ -91,14 +86,14 @@ giovanni-savassa-portfolio/
 
 ## 🚀 Como Executar Localmente
 
-Como o projeto utiliza **Módulos ES6 nativos** (`import`/`export`), os navegadores exigem que a aplicação rode sob um servidor HTTP local por razões de segurança.
+Navegadores modernos exigem um servidor HTTP local para carregar os módulos nativos do ES6 (`import`/`export`) por questões de segurança de arquivo local (`CORS`).
 
-Escolha uma das formas simples abaixo para iniciar:
+Você pode iniciar o projeto de forma extremamente simples com as seguintes opções:
 
-### Opção 1: Servidor Nativo PowerShell (Recomendado para Windows)
-Se estiver no Windows, você pode rodar o servidor web nativo .NET criado especialmente para evitar bloqueios de rede corporativos. No PowerShell, execute:
+### Opção 1: Servidor Portátil em PowerShell (Recomendado para Windows)
+O projeto inclui um servidor HTTP nativo e portátil na raiz. Para rodar, abra o PowerShell no diretório do projeto e execute:
 ```powershell
-powershell -File C:\Users\alessandro.meneses.Automotion\.gemini\antigravity\brain\afe39f32-8d1d-4c6d-9d87-b17a1792c2cb\scratch\server.ps1
+./server.ps1
 ```
 Abra o navegador em: `http://127.0.0.1:8082`.
 
@@ -107,8 +102,8 @@ Abra o navegador em: `http://127.0.0.1:8082`.
 2. Clique com o botão direito no `index.html`.
 3. Selecione **"Open with Live Server"**.
 
-### Opção 3: Python
-Se você possui o Python instalado e nenhuma regra de rede bloqueando, execute no terminal:
+### Opção 3: Python (Qualquer Sistema)
+Execute o comando abaixo no terminal da pasta do projeto:
 ```bash
 python -m http.server 8000
 ```
@@ -124,30 +119,20 @@ Para atualizar as informações exibidas no site, abra o arquivo `assets/js/data
 Modifique o campo `biography`:
 ```javascript
 export const aboutData = {
-    biography: "Sua nova biografia de nível Master/Sênior..."
+    biography: "Nova biografia profissional..."
 };
 ```
 
-### 2. Adicionar Novas Competências
-Insira tags ou novas categorias no array `skillsData`:
-```javascript
-{
-    title: "Nova Categoria",
-    icon: "bx-code-block", // Classe de ícone do Boxicons
-    tags: ["Tecnologia A", "Tecnologia B", "Processo C"]
-}
-```
-
-### 3. Inserir Nova Experiência Profissional
+### 2. Inserir Nova Experiência Profissional
 Adicione um novo objeto no topo do array `experienceData`:
 ```javascript
 {
-    role: "Analista Sênior de Redes",
-    company: "Empresa Exemplo S.A.",
-    period: "Junho de 2026 - Presente",
+    role: "Seu Cargo Técnico",
+    company: "Nome da Empresa",
+    period: "Período de Atuação",
     bullets: [
-        "Liderança técnica na implantação da infraestrutura X.",
-        "Redução de custos operacionais em 20% com automações de rede."
+        "Responsabilidade A com impacto quantificável.",
+        "Tecnologia B implementada com sucesso."
     ]
 }
 ```
@@ -156,36 +141,33 @@ Adicione um novo objeto no topo do array `experienceData`:
 
 ## 🌐 Guia de Implantação (Deployment no GitHub Pages)
 
-Para publicar o portfólio online gratuitamente utilizando o **GitHub Pages**, siga estes passos:
+Para publicar o portfólio online gratuitamente utilizando o **GitHub Pages**:
 
-1. **Crie um repositório vazio no GitHub** com o nome `giovanni-savassa-portfolio` (ou o nome de sua preferência).
-2. **Inicie o Git localmente** e faça o commit inicial:
+1. Crie um repositório no seu GitHub com o nome `giovanni-savassa-portfolio`.
+2. Vincule seu repositório local e faça o upload do código:
    ```bash
    git init
    git add .
-   git commit -m "feat: estrutura inicial do portfólio SOLID/UX"
-   ```
-3. **Vincule ao seu repositório remoto** e envie os arquivos (substitua pelo seu usuário do GitHub):
-   ```bash
+   git commit -m "feat: design premium e dados de currículo atualizados"
    git remote add origin https://github.com/SEU_USUARIO/giovanni-savassa-portfolio.git
    git branch -M main
    git push -u origin main
    ```
-4. **Ative o GitHub Pages**:
-   - No GitHub, vá nas **Settings** (Configurações) do repositório.
+3. Ative o GitHub Pages:
+   - No painel do GitHub, clique em **Settings** (Configurações) no menu superior.
    - Na barra lateral esquerda, clique em **Pages**.
-   - Na seção *Build and deployment*, defina a Source como **Deploy from a branch**.
-   - Selecione a branch `main` e a pasta `/ (root)`. Clique em **Save**.
-5. **Pronto!** Em cerca de 1 a 2 minutos, seu portfólio estará online no endereço `https://SEU_USUARIO.github.io/giovanni-savassa-portfolio/`.
+   - Defina a branch como `main` e a pasta como `/ (root)`.
+   - Clique em **Save**.
+4. Em cerca de 1 minuto, o site estará disponível publicamente no link fornecido pelo GitHub (geralmente `https://SEU_USUARIO.github.io/giovanni-savassa-portfolio/`).
 
 ---
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes.
+Este projeto está licenciado sob a licença MIT - consulte o arquivo [LICENSE](LICENSE) para obter detalhes.
 
 ---
 
 <p align="center">
-  Desenvolvido com 💙 para destacar talentos na área de tecnologia.
+  Desenvolvido com 💙 para destacar talentos e simplificar contratações técnicas.
 </p>
