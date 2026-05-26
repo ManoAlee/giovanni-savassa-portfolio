@@ -41,8 +41,16 @@
 }
 
 /* ==================== HERO SECTION (HOME) ==================== */
+.home {
+    min-height: calc(100vh - 8rem);
+    display: flex;
+    align-items: center;
+    padding-block: 4rem 2rem;
+}
+
 .home__container {
-    row-gap: 2rem;
+    width: 100%;
+    row-gap: 3rem;
     align-items: center;
     padding-top: 1.5rem;
 }
@@ -642,7 +650,7 @@
 /* ==================== INTERACTIVE TERMINAL (CLI) ==================== */
 .terminal__container {
     width: 100%;
-    max-width: 500px;
+    max-width: 580px;
     display: flex;
     justify-content: center;
 }
@@ -727,7 +735,8 @@
 .terminal__text {
     margin-bottom: 0.75rem;
     white-space: pre-wrap;
-    word-break: break-all;
+    word-break: normal;
+    overflow-wrap: break-word;
 }
 
 .terminal__welcome {

@@ -228,8 +228,15 @@
         column-gap: 2.5rem;
     }
     .nav__menu {
+        position: static;
+        width: auto;
+        background-color: transparent;
+        border-bottom: none;
+        box-shadow: none;
+        padding-block: 0;
         margin-left: auto;
         margin-right: 2.5rem;
+        transition: none;
     }
     
     .footer__container {
