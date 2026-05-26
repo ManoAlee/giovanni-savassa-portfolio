@@ -166,12 +166,13 @@
     padding: 1.25rem .75rem;
     text-align: center;
     box-shadow: 0 4px 12px var(--shadow-color);
-    transition: transform var(--transition), border-color var(--transition);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .about__info-card:hover {
     transform: translateY(-5px);
     border-color: var(--first-color);
+    box-shadow: 0 10px 24px var(--accent-glow);
 }
 
 .about__info-title {
@@ -258,12 +259,13 @@
     border-radius: var(--border-radius-lg);
     padding: 1.75rem;
     box-shadow: 0 6px 16px var(--shadow-color);
-    transition: transform var(--transition), border-color var(--transition);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .skills__card:hover {
     transform: translateY(-5px);
-    border-color: rgba(0, 242, 254, 0.2);
+    border-color: var(--first-color);
+    box-shadow: 0 10px 24px var(--accent-glow);
 }
 
 .skills__card-header {
@@ -475,12 +477,13 @@
     padding: 1.5rem;
     text-align: center;
     box-shadow: 0 4px 12px var(--shadow-color);
-    transition: transform var(--transition), border-color var(--transition);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .contact__card:hover {
     transform: translateY(-5px);
     border-color: var(--first-color);
+    box-shadow: 0 10px 24px var(--accent-glow);
 }
 
 .contact__card-icon {

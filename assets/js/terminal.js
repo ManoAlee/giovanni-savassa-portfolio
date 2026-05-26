@@ -73,6 +73,27 @@ export function initTerminal() {
     let commandHistory = [];
     let historyIndex = -1;
 
+    // Função interna para adicionar linhas de texto
+    function appendLine(text) {
+        const line = document.createElement('p');
+        line.className = 'terminal__text';
+        line.innerHTML = text;
+        
+        const inputLine = document.querySelector('.terminal__input-line');
+        if (inputLine) {
+            terminalBody.insertBefore(line, inputLine);
+        } else {
+            terminalBody.appendChild(line);
+        }
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+
+    function clearTerminal() {
+        const lines = terminalBody.querySelectorAll('.terminal__text:not(.terminal__welcome)');
+        lines.forEach(line => line.remove());
+    }
+
+    // Event listener para digitação
     terminalInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             const rawCommand = terminalInput.value;
@@ -82,10 +103,10 @@ export function initTerminal() {
                 commandHistory.push(rawCommand);
                 historyIndex = commandHistory.length;
                 
-                // Exibe o comando digitado
+                // Exibe o comando no terminal
                 appendLine(`guest@savassa-ti:~$ ${rawCommand}`);
                 
-                // Processa a saída
+                // Processamento de comandos
                 if (cleanCommand === 'clear') {
                     clearTerminal();
                 } else if (COMMANDS[cleanCommand]) {
@@ -96,8 +117,6 @@ export function initTerminal() {
             }
             
             terminalInput.value = '';
-            // Auto-scroll para o final
-            terminalBody.scrollTop = terminalBody.scrollHeight;
         } 
         else if (e.key === 'ArrowUp') {
             if (historyIndex > 0) {
@@ -118,18 +137,38 @@ export function initTerminal() {
         }
     });
 
-    function appendLine(text) {
-        const line = document.createElement('p');
-        line.className = 'terminal__text';
-        line.innerHTML = text;
+    // ==================== SIMULAÇÃO DE INTRODUÇÃO (UX AUTOMATION) ====================
+    // Simula a digitação automática de "help" ao carregar a página para orientar o usuário
+    function runIntroSimulation() {
+        const simulationText = 'help';
+        let charIndex = 0;
         
-        // Insere a linha antes do bloco de input
-        const inputLine = document.querySelector('.terminal__input-line');
-        terminalBody.insertBefore(line, inputLine);
+        terminalInput.disabled = true;
+        terminalInput.placeholder = 'Iniciando sistema...';
+        
+        function typeChar() {
+            if (charIndex < simulationText.length) {
+                terminalInput.value += simulationText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, 120);
+            } else {
+                setTimeout(() => {
+                    terminalInput.disabled = false;
+                    terminalInput.placeholder = 'digite um comando...';
+                    
+                    // Executa a impressão diretamente de forma robusta e limpa
+                    appendLine(`guest@savassa-ti:~$ help`);
+                    appendLine(COMMANDS.help);
+                    terminalInput.value = '';
+                    
+                    terminalInput.focus();
+                }, 400);
+            }
+        }
+        
+        // Inicia a digitação após 1.2 segundos da inicialização
+        setTimeout(typeChar, 1200);
     }
 
-    function clearTerminal() {
-        const lines = terminalBody.querySelectorAll('.terminal__text:not(.terminal__welcome)');
-        lines.forEach(line => line.remove());
-    }
+    runIntroSimulation();
 }
