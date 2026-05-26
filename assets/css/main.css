@@ -1,0 +1,123 @@
+/* ==================== GLOBAL RESETS ==================== */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    transition: background-color var(--transition), color var(--transition);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    color: var(--title-color);
+    font-weight: var(--font-semibold);
+    line-height: 1.25;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+button, input {
+    border: none;
+    outline: none;
+    font-family: var(--body-font);
+}
+
+/* ==================== REUSABLE LAYOUT CLASSES ==================== */
+.container {
+    max-width: 1120px;
+    margin-inline: 1.5rem;
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.section {
+    padding-block: 5.5rem 2rem;
+}
+
+.section__title {
+    text-align: center;
+    font-size: var(--h1-font-size);
+    margin-bottom: 0.75rem;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section__title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--first-color), var(--second-color));
+    margin: 0.5rem auto 0;
+    border-radius: var(--border-radius-sm);
+}
+
+.section__subtitle {
+    display: block;
+    text-align: center;
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+    margin-bottom: 3.5rem;
+    font-weight: var(--font-medium);
+}
+
+/* ==================== BACKGROUND DECORATIVE GLOW (UX PREMIUM) ==================== */
+.bg-glow {
+    position: absolute;
+    width: 30vw;
+    height: 30vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 70%);
+    filter: blur(80px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bg-glow-1 {
+    top: -5%;
+    right: -10%;
+}
+
+.bg-glow-2 {
+    top: 45%;
+    left: -15%;
+    background: radial-gradient(circle, rgba(79, 172, 254, 0.15) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* ==================== MEDIA QUERIES (BREAKPOINTS) ==================== */
+@media screen and (min-width: 768px) {
+    .container {
+        margin-inline: auto;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .container {
+        margin-inline: 1rem;
+    }
+}
