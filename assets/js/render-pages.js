@@ -11,22 +11,33 @@ function renderAbout() {
 }
 
 /**
- * Renderiza os cards de competências técnicas com suas tags de habilidades
+ * Renderiza os cards de competências técnicas com suas tags de habilidades e cores por categoria
  */
 function renderSkills() {
     const placeholder = document.getElementById('skills-list-placeholder');
     if (!placeholder) return;
 
+    const categoryColors = {
+        "Suporte & Hardware": "support",
+        "Redes & Infraestrutura": "network",
+        "Segurança da Informação": "security",
+        "Sistemas & Softwares": "systems",
+        "Desenvolvimento Web & CMS": "web"
+    };
+
     let html = '';
     skillsData.forEach(skillCategory => {
+        const colorClass = categoryColors[skillCategory.title] || 'default';
         const tagsHtml = skillCategory.tags
-            .map(tag => `<span class="skills__tag">${tag}</span>`)
+            .map(tag => `<span class="skills__tag skills__tag--${colorClass}">${tag}</span>`)
             .join('');
 
         html += `
-            <div class="skills__card">
+            <div class="skills__card skills__card--${colorClass}">
                 <div class="skills__card-header">
-                    <i class="bx ${skillCategory.icon} skills__card-icon"></i>
+                    <div class="skills__icon-box skills__icon-box--${colorClass}">
+                        <i class="bx ${skillCategory.icon} skills__card-icon"></i>
+                    </div>
                     <h3 class="skills__card-title">${skillCategory.title}</h3>
                 </div>
                 <div class="skills__tags">
@@ -76,7 +87,7 @@ function renderExperience() {
 }
 
 /**
- * Renderiza a grade dos projetos em destaque
+ * Renderiza a grade dos projetos em destaque com seções de Desafio, Solução e Impacto
  */
 function renderProjects() {
     const placeholder = document.getElementById('projects-list-placeholder');
@@ -90,17 +101,36 @@ function renderProjects() {
 
         html += `
             <div class="projects__card">
-                <h3 class="projects__project-title">
-                    ${project.name}
-                    <i class="bx bx-folder"></i>
-                </h3>
+                <div class="projects__header">
+                    <h3 class="projects__project-title">${project.name}</h3>
+                    <i class="bx bx-folder-open projects__folder-icon"></i>
+                </div>
+                
                 <div class="projects__tech-list">
                     ${badgesHtml}
                 </div>
+                
                 <div class="projects__body">
-                    <p class="projects__detail"><strong>Desafio:</strong> ${project.challenge}</p>
-                    <p class="projects__detail"><strong>Solução:</strong> ${project.solution}</p>
-                    <p class="projects__detail"><strong>Impacto:</strong> ${project.result}</p>
+                    <div class="projects__detail-box projects__detail-box--challenge">
+                        <span class="projects__detail-title">
+                            <i class="bx bx-error-circle"></i> Desafio
+                        </span>
+                        <p class="projects__detail-text">${project.challenge}</p>
+                    </div>
+                    
+                    <div class="projects__detail-box projects__detail-box--solution">
+                        <span class="projects__detail-title">
+                            <i class="bx bx-cog"></i> Solução
+                        </span>
+                        <p class="projects__detail-text">${project.solution}</p>
+                    </div>
+                    
+                    <div class="projects__detail-box projects__detail-box--impact">
+                        <span class="projects__detail-title">
+                            <i class="bx bx-trending-up"></i> Impacto
+                        </span>
+                        <p class="projects__detail-text">${project.result}</p>
+                    </div>
                 </div>
             </div>
         `;
