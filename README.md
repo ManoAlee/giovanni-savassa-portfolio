@@ -21,39 +21,41 @@ O resultado é uma aplicação web rápida, moderna, responsiva, com suporte nat
 
 ## 🛠️ Arquitetura do Projeto & Princípios SOLID
 
-Diferente de portfólios comuns estruturados em arquivos HTML estáticos gigantescos e difíceis de manter, este projeto foi desenhado sob uma **arquitetura limpa e desacoplada**.
+Diferente de portfólios comuns estruturados em arquivos HTML estáticos gigantescos, este projeto foi desenhado sob uma **arquitetura limpa, desacoplada e distribuída em múltiplas páginas**.
 
 ```mermaid
 graph TD
-    A[data.js <br> 'Camada de Dados'] -->|Exporta Arrays de Objetos| B[render.js <br> 'Camada de Renderização']
-    B -->|Injeta HTML dinâmico| C[index.html <br> 'Estrutura Semântica']
-    D[main.js <br> 'Orquestrador/Eventos'] -->|Inicializa| B
-    D -->|Controla Interações| C
-    E[variables.css <br> 'Design Tokens'] -->|Alimenta estilos globais| F[CSS Modulares <br> main/layout/components.css]
-    F -->|Aplica Visual| C
+    A[data.js <br> 'Camada de Dados'] -->|Exporta Arrays de Objetos| B[render-pages.js <br> 'Renderizador Inteligente']
+    B -->|Injeta HTML dinâmico| C[about.html / skills.html / experience.html / projects.html]
+    D[terminal.js <br> 'CLI Mockup'] -->|Controla Console Interativo| E[index.html]
+    F[main.js <br> 'Orquestrador Global'] -->|Inicializa módulos e controla temas| C
+    F -->|Inicializa| D
+    G[variables.css <br> 'Design Tokens'] -->|Alimenta estilos globais| H[CSS Modulares <br> main/layout/components.css]
+    H -->|Aplica Visual| C
+    H -->|Aplica Visual| E
 ```
 
 ### Como o SOLID é Aplicado na Prática:
 
 1. **S - Single Responsibility Principle (Princípio da Responsabilidade Única):**
-   - `index.html` tem a **única** responsabilidade de definir a estrutura semântica básica e os contêineres de ancoragem.
+   - Cada arquivo HTML (`index.html`, `about.html`, etc.) é responsável apenas por estruturar a sua respectiva seção.
    - `data.js` tem a **única** responsabilidade de armazenar as informações profissionais estruturadas.
-   - `render.js` tem a **única** responsabilidade de ler os dados e transformá-los em nós do DOM.
-   - `main.js` tem a **única** responsabilidade de gerenciar eventos da página (scroll, troca de tema, ações de clique).
-   - O CSS é fragmentado de forma modular (variáveis, reset, layout estrutural e componentes individuais).
+   - `render-pages.js` tem a **única** responsabilidade de mapear e renderizar os dados nas páginas correspondentes de forma limpa.
+   - `terminal.js` tem a **única** responsabilidade de controlar o console/terminal interativo da Home.
+   - `main.js` gerencia eventos globais (responsividade de menus, persistência do tema e feedback de cópia de e-mail).
 
 2. **O - Open/Closed Principle (Princípio Aberto/Fechado):**
    - O sistema está **fechado para modificação** do código de apresentação, mas **aberto para extensão** do conteúdo. 
-   - Se o Giovanni realizar um novo curso, ganhar uma nova certificação ou mudar de emprego, **nenhuma linha de HTML, CSS ou lógica JS precisa ser alterada**. Ele apenas adiciona o novo registro ao arquivo `data.js` e a interface se reconstrói sozinha.
+   - Se o Giovanni realizar um novo curso ou mudar de emprego, ele apenas adiciona o novo registro ao arquivo `data.js` e a interface correspondente se reconstrói sozinha, sem precisar editar as tags HTML.
 
 ---
 
 ## 🎨 Decisões de Design (UX/UI Premium)
 
-- **Dark-First Moderno:** O portfólio inicia em um tema escuro premium (`#080c14`), reduzindo a fadiga visual dos recrutadores. Tons de azul neon e ciano criam contrastes que direcionam a leitura.
-- **Micro-Interações Fluidas:** Hover com elevação de cards, botões com gradientes interativos, e efeito de cópia rápida no botão de e-mail (copia o texto e altera temporariamente o texto do botão para "Copiado!" com um checkmark).
-- **Responsividade Absoluta:** O layout adapta-se de telas mobile de 320px até monitores ultrawide, reorganizando grids e colunas de forma fluida.
-- **Glassmorphism:** O cabeçalho fixo utiliza `backdrop-filter: blur(12px)` gerando o efeito de vidro translúcido ao rolar a página, mantendo o usuário contextualizado sobre a navegação.
+- **Dark-First Moderno:** O portfólio inicia em um tema escuro premium (`#080c14`), reduzindo a fadiga visual. O usuário pode alternar para o tema Claro a qualquer momento, e a preferência é gravada no navegador (`localStorage`).
+- **Terminal Interativo (CLI Mockup):** Um terminal de comandos totalmente funcional na Home onde recrutadores técnicos podem digitar comandos como `help`, `about`, `skills`, `experience`, `projects` e `contact` para navegar de maneira integrada e divertida.
+- **Micro-Interações Fluidas:** Hover com elevação de cards, botões com gradientes interativos, e efeito de cópia rápida no botão de e-mail.
+- **Glassmorphism:** Cabeçalho fixo com `backdrop-filter: blur(12px)` gerando o efeito de vidro translúcido ao rolar a página.
 
 ---
 
@@ -62,23 +64,27 @@ graph TD
 ```text
 giovanni-savassa-portfolio/
 │
-├── index.html                  # Arquivo principal (Semântico HTML5)
-├── README.md                   # Documentação detalhada técnica (Este arquivo)
+├── index.html                  # Home Page (Apresentação & Terminal CLI)
+├── about.html                  # Sobre Mim (Biografia expandida & Fatec)
+├── skills.html                 # Competências Técnicas (Grade detalhada)
+├── experience.html             # Experiência Profissional (Linha do tempo interativa)
+├── projects.html               # Projetos de Destaque (Filtro por categorias)
+├── contact.html                # Contato (Canais de comunicação)
 ├── portfolio-content.md        # Conteúdo estruturado em Markdown para uso externo
+├── README.md                   # Documentação detalhada técnica (Este arquivo)
 │
 └── assets/
     ├── css/
     │   ├── variables.css       # Design tokens (Cores, Fontes, Margens, Transições)
     │   ├── main.css            # Reset de estilos globais e classes utilitárias
     │   ├── layout.css          # Estilização de Cabeçalho, Footer e Menu Drawer
-    │   └── components.css      # Estilização de Cards, Botões, Badges e Timeline
+    │   └── components.css      # Estilização de Cards, Botões, Badges, Terminal e Timeline
     │
-    ├── js/
-    │   ├── data.js             # Banco de dados local (Experiências, Projetos, Skills)
-    │   ├── render.js           # Funções puras de renderização dinâmica do DOM
-    │   └── main.js             # Gerenciador de eventos, temas e interatividade
-    │
-    └── img/                    # Diretório reservado para imagens/assets
+    └── js/
+        ├── data.js             # Banco de dados local (Experiências, Projetos, Skills)
+        ├── render-pages.js     # Renderização condicional inteligente do DOM por página
+        ├── terminal.js         # Lógica do simulador de terminal de comandos da Home
+        └── main.js             # Orquestrador de eventos, temas e interatividade global
 ```
 
 ---
@@ -89,20 +95,20 @@ Como o projeto utiliza **Módulos ES6 nativos** (`import`/`export`), os navegado
 
 Escolha uma das formas simples abaixo para iniciar:
 
-### Opção 1: VS Code (Live Server)
+### Opção 1: Servidor Nativo PowerShell (Recomendado para Windows)
+Se estiver no Windows, você pode rodar o servidor web nativo .NET criado especialmente para evitar bloqueios de rede corporativos. No PowerShell, execute:
+```powershell
+powershell -File C:\Users\alessandro.meneses.Automotion\.gemini\antigravity\brain\afe39f32-8d1d-4c6d-9d87-b17a1792c2cb\scratch\server.ps1
+```
+Abra o navegador em: `http://127.0.0.1:8082`.
+
+### Opção 2: VS Code (Live Server)
 1. Instale a extensão **Live Server** no VS Code.
 2. Clique com o botão direito no `index.html`.
 3. Selecione **"Open with Live Server"**.
 
-### Opção 2: NodeJS
-No diretório do projeto, execute:
-```bash
-# Executa servidor estático instantâneo
-npx serve
-```
-
 ### Opção 3: Python
-Se você possui o Python instalado, execute no terminal do projeto:
+Se você possui o Python instalado e nenhuma regra de rede bloqueando, execute no terminal:
 ```bash
 python -m http.server 8000
 ```

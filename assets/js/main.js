@@ -1,12 +1,38 @@
-import { initRender } from './render.js';
+import { initRenderPages } from './render-pages.js';
+import { initTerminal } from './terminal.js';
 
-/* ==================== INICIALIZAÇÃO DE RENDERIZAÇÃO ==================== */
+/* ==================== INICIALIZAÇÃO DO PORTFÓLIO MULTI-PÁGINAS ==================== */
 document.addEventListener('DOMContentLoaded', () => {
-    initRender();
-    initApp();
+    // 1. Renderiza o conteúdo dinâmico da página atual
+    initRenderPages();
+    
+    // 2. Inicializa o terminal interativo (se estiver na Home)
+    if (document.getElementById('terminal-body')) {
+        initTerminal();
+    }
+    
+    // 3. Inicializa funções globais (Tema, Menu, Eventos)
+    initAppBehavior();
 });
 
-function initApp() {
+function initAppBehavior() {
+    /* ==================== DETECTOR DE PÁGINA ATIVA NO MENU ==================== */
+    const navLinks = document.querySelectorAll('.nav__link');
+    const currentPath = window.location.pathname;
+
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        
+        // Verifica se a página atual corresponde ao link (para navegação multi-páginas)
+        if (currentPath.includes(linkPath) && linkPath !== 'index.html' && linkPath !== '#') {
+            link.classList.add('active-link');
+        } else if ((currentPath.endsWith('/') || currentPath.endsWith('index.html')) && (linkPath === 'index.html' || linkPath === '#')) {
+            link.classList.add('active-link');
+        } else {
+            link.classList.remove('active-link');
+        }
+    });
+
     /* ==================== SHOW/HIDE MENU MOBILE ==================== */
     const navMenu = document.getElementById('nav-menu'),
           navToggle = document.getElementById('nav-toggle'),
@@ -27,20 +53,21 @@ function initApp() {
     }
 
     // Remove Menu ao clicar em links
-    const navLinks = document.querySelectorAll('.nav__link');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            navMenu.classList.remove('show-menu');
+            if (navMenu) navMenu.classList.remove('show-menu');
         });
     });
 
-    /* ==================== ADICIONAR SOMBRA NO CABEÇALHO AO SCROLL ==================== */
+    /* ==================== SOMBRA NO CABEÇALHO AO SCROLL ==================== */
     const header = document.getElementById('header');
     const scrollHeader = () => {
-        if (window.scrollY >= 50) {
-            header.classList.add('scroll-header');
-        } else {
-            header.classList.remove('scroll-header');
+        if (header) {
+            if (window.scrollY >= 50) {
+                header.classList.add('scroll-header');
+            } else {
+                header.classList.remove('scroll-header');
+            }
         }
     };
     window.addEventListener('scroll', scrollHeader);
@@ -48,65 +75,65 @@ function initApp() {
     /* ==================== EXIBIR BOTÃO SCROLL UP ==================== */
     const scrollUpButton = document.getElementById('scroll-up');
     const scrollUp = () => {
-        if (window.scrollY >= 350) {
-            scrollUpButton.classList.add('show-scroll');
-        } else {
-            scrollUpButton.classList.remove('show-scroll');
+        if (scrollUpButton) {
+            if (window.scrollY >= 350) {
+                scrollUpButton.classList.add('show-scroll');
+            } else {
+                scrollUpButton.classList.remove('show-scroll');
+            }
         }
     };
     window.addEventListener('scroll', scrollUp);
 
-    /* ==================== HIGHLIGHT ATIVO DO MENU AO SCROLL ==================== */
-    const sections = document.querySelectorAll('section[id]');
-    const scrollActive = () => {
-        const scrollY = window.pageYOffset;
-
-        sections.forEach(current => {
-            const sectionHeight = current.offsetHeight,
-                  sectionTop = current.offsetTop - 58,
-                  sectionId = current.getAttribute('id'),
-                  sectionsClass = document.querySelector(`.nav__menu a[href*=${sectionId}]`);
-
-            if (sectionsClass) {
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    sectionsClass.classList.add('active-link');
-                } else {
-                    sectionsClass.classList.remove('active-link');
-                }
-            }
-        });
-    };
-    window.addEventListener('scroll', scrollActive);
-
-    /* ==================== ALTERNADOR DE TEMA ESCURO/CLARO ==================== */
+    /* ==================== ALTERNADOR DE TEMA ESCURO/CLARO (PERSISTENTE) ==================== */
     const themeButton = document.getElementById('theme-button');
     const darkTheme = 'dark-theme';
-    const iconTheme = 'bx-sun'; // Ícone alternativo para o tema claro
+    const iconTheme = 'bx-sun'; // Sol para trocar para o claro, lua para o escuro
 
-    // Recupera tema salvo anteriormente pelo usuário
-    const selectedTheme = localStorage.getItem('selected-theme');
-    const selectedIcon = localStorage.getItem('selected-icon');
-
-    // Detecta o tema padrão atual do corpo HTML
-    const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light';
-    const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'bx-moon' : 'bx-sun';
-
-    // Aplica o tema anterior salvo (caso exista)
-    if (selectedTheme) {
-        document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme);
-        themeButton.classList[selectedIcon === 'bx-moon' ? 'add' : 'remove'](iconTheme);
+    // 1. Carrega a preferência salva ou respeita a configuração padrão do navegador
+    const savedTheme = localStorage.getItem('selected-theme');
+    
+    if (savedTheme) {
+        // Se já existe uma escolha do usuário
+        if (savedTheme === 'dark') {
+            document.body.classList.add(darkTheme);
+            if (themeButton) {
+                themeButton.classList.remove(iconTheme);
+                themeButton.classList.add('bx-moon');
+            }
+        } else {
+            document.body.classList.remove(darkTheme);
+            if (themeButton) {
+                themeButton.classList.add(iconTheme);
+                themeButton.classList.remove('bx-moon');
+            }
+        }
+    } else {
+        // Se é a primeira visita, inicia com o tema escuro padrão
+        document.body.classList.add(darkTheme);
+        if (themeButton) {
+            themeButton.classList.remove(iconTheme);
+            themeButton.classList.add('bx-moon');
+        }
     }
 
-    // Ação do botão de alternar tema
-    themeButton.addEventListener('click', () => {
-        // Inverte o estado da classe do tema no body
-        document.body.classList.toggle(darkTheme);
-        themeButton.classList.toggle(iconTheme);
-        
-        // Salva a preferência
-        localStorage.setItem('selected-theme', getCurrentTheme());
-        localStorage.setItem('selected-icon', getCurrentIcon());
-    });
+    // 2. Evento de clique para alternar
+    if (themeButton) {
+        themeButton.addEventListener('click', () => {
+            document.body.classList.toggle(darkTheme);
+            
+            const isDark = document.body.classList.contains(darkTheme);
+            if (isDark) {
+                themeButton.classList.remove(iconTheme);
+                themeButton.classList.add('bx-moon');
+                localStorage.setItem('selected-theme', 'dark');
+            } else {
+                themeButton.classList.add(iconTheme);
+                themeButton.classList.remove('bx-moon');
+                localStorage.setItem('selected-theme', 'light');
+            }
+        });
+    }
 
     /* ==================== COPIAR E-MAIL COM FEEDBACK DE INTERFACE ==================== */
     const copyEmailBtn = document.getElementById('copy-email-btn');
@@ -114,7 +141,6 @@ function initApp() {
         copyEmailBtn.addEventListener('click', () => {
             const email = 'giovannisavassa4@gmail.com';
             navigator.clipboard.writeText(email).then(() => {
-                // Feedback visual do botão
                 const originalText = copyEmailBtn.innerHTML;
                 copyEmailBtn.innerHTML = `Copiado! <i class='bx bx-check'></i>`;
                 copyEmailBtn.style.color = 'var(--second-color)';

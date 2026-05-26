@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Giovanni Savassa</title>
+
+    <!-- Google Fonts -->
+    <link align="preconnect" href="https://fonts.googleapis.com">
+    <link align="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Boxicons para Ícones -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Estilos do Projeto -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body class="dark-theme">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <!-- Cabeçalho Global -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo">
+                GIOVANNI<span>.SAVASSA</span>
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">Sobre</a></li>
+                    <li class="nav__item"><a href="skills.html" class="nav__link">Competências</a></li>
+                    <li class="nav__item"><a href="experience.html" class="nav__link">Experiência</a></li>
+                    <li class="nav__item"><a href="projects.html" class="nav__link">Projetos</a></li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link active-link">Contato</a></li>
+                </ul>
+                <div class="nav__close" id="nav-close">
+                    <i class="bx bx-x"></i>
+                </div>
+            </div>
+
+            <div class="nav__actions">
+                <i class="bx bx-moon change-theme" id="theme-button"></i>
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="bx bx-grid-alt"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <section class="contact section" id="contact">
+            <div class="container">
+                <h2 class="section__title">Contato</h2>
+                <span class="section__subtitle">Conecte-se comigo para oportunidades de negócios ou recrutamento</span>
+
+                <div class="contact__container container grid">
+                    <!-- Informações de Contato -->
+                    <div class="contact__content">
+                        <div class="contact__info">
+                            <div class="contact__card">
+                                <i class="bx bx-envelope contact__card-icon"></i>
+                                <h3 class="contact__card-title">E-mail</h3>
+                                <span class="contact__card-data">giovannisavassa4@gmail.com</span>
+                                <button class="contact__button" id="copy-email-btn">
+                                    Copiar E-mail <i class="bx bx-copy"></i>
+                                </button>
+                            </div>
+
+                            <div class="contact__card">
+                                <i class="bx bxl-linkedin contact__card-icon"></i>
+                                <h3 class="contact__card-title">LinkedIn</h3>
+                                <span class="contact__card-data">in/giovanni-savassa</span>
+                                <a href="https://www.linkedin.com/in/giovanni-savassa" target="_blank" class="contact__button">
+                                    Conectar-se <i class="bx bx-right-arrow-alt"></i>
+                                </a>
+                            </div>
+
+                            <div class="contact__card">
+                                <i class="bx bx-map contact__card-icon"></i>
+                                <h3 class="contact__card-title">Localização</h3>
+                                <span class="contact__card-data">São Paulo - SP, Brasil</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Premium -->
+                    <div class="contact__form-container">
+                        <div class="cta__card">
+                            <h3>Interessado no Perfil do Giovanni?</h3>
+                            <p>Giovanni possui sólidos conhecimentos acadêmicos em Gestão de TI e infraestrutura prática em redes e suporte ao usuário. Ele está pronto para agregar valor à sua equipe técnica com foco em conformidade e segurança da informação.</p>
+                            <a href="mailto:giovannisavassa4@gmail.com?subject=Oportunidade%20de%20Trabalho" class="button">
+                                Mandar Mensagem Direta <i class="bx bx-send button__icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé Global -->
+    <footer class="footer">
+        <div class="footer__container container">
+            <h1 class="footer__title">Giovanni Savassa</h1>
+            <p class="footer__subtitle">IT Specialist Portfolio</p>
+            <span class="footer__copy">&#169; 2026 Giovanni Savassa. Desenvolvido sob princípios SOLID e UX.</span>
+        </div>
+    </footer>
+
+    <!-- Script Principal -->
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>
