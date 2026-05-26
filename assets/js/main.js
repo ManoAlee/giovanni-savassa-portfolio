@@ -139,7 +139,7 @@ function initAppBehavior() {
     const copyEmailBtn = document.getElementById('copy-email-btn');
     if (copyEmailBtn) {
         copyEmailBtn.addEventListener('click', () => {
-            const email = 'giovannisavassa4@gmail.com';
+            const email = 'giovannisavassa@outlook.com';
             navigator.clipboard.writeText(email).then(() => {
                 const originalText = copyEmailBtn.innerHTML;
                 copyEmailBtn.innerHTML = `Copiado! <i class='bx bx-check'></i>`;

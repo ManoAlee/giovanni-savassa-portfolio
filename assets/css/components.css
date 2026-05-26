@@ -673,9 +673,6 @@
     .contact__info {
         grid-template-columns: repeat(2, 1fr);
     }
-    .contact__card:last-child {
-        grid-column: span 2;
-    }
 }
 
 @media screen and (min-width: 768px) {

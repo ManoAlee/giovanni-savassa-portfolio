@@ -43,7 +43,8 @@ Noções complementares em CMS (WordPress) e Front-End.`,
 
     contact: `<b>Canais de Contato:</b>
 -------------------
-• E-mail: <a href="mailto:giovannisavassa4@gmail.com" class="terminal__link">giovannisavassa4@gmail.com</a>
+• E-mail: <a href="mailto:giovannisavassa@outlook.com" class="terminal__link">giovannisavassa@outlook.com</a>
+• Telefone/WhatsApp: +55 (15) 99811-5645
 • LinkedIn: <a href="https://www.linkedin.com/in/giovanni-savassa" target="_blank" class="terminal__link">linkedin.com/in/giovanni-savassa</a>
 • Git/Portfólio: <a href="https://github.com/ManoAlee" target="_blank" class="terminal__link">github.com/ManoAlee</a>`,
 
