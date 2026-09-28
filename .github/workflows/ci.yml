@@ -1,0 +1,23 @@
+name: Portfolio Integrity CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate-pages:
+    name: Validate HTML Entrypoints
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Pages
+        run: |
+          test -f index.html
+          test -f about.html
+          test -f projects.html
+          test -f experience.html
+          test -f skills.html
+          echo "All portfolio HTML entrypoints validated."
+        shell: bash
